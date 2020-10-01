@@ -1,0 +1,621 @@
+{{#if details.content}}
+  <div>
+    <a href="https://portal-digitalshadows.com/search?q={{block.entity.value}}" class="p-link">Pivot to Digital Shadows Portal {{fa-icon "external-link-square" class="external-link-icon"}}</a>
+  </div>
+
+  <span class="p-title">{{fa-icon "search" fixedWidth=true}}Search Result Detail</span>
+
+  {{#each details.content as |content index|}}
+
+      <h1 class="p-title">
+        Search Result #{{inc index}}
+      </h1>
+
+      {{#if content.type}}
+        <div>
+            <span class="p-key">Result Type: </span>
+            <span class="p-value">{{content.type}}</span>
+        </div>
+      {{/if}}
+
+      {{! WEB_PAGE output parsing}}
+      {{#if (eq content.type "WEB_PAGE")}}
+        {{#if content.entity.title}}
+          <div>
+              <span class="p-key">Title: </span>
+              <a href="https://portal-digitalshadows.com/search/darkwebpage/{{content.entity.id}}" class="p-link">{{content.entity.title}} {{fa-icon "external-link-square" class="external-link-icon"}}</a>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{#if content.entity.source}}
+        <div>
+            <span class="p-key">Source: </span>
+            <span class="p-value">{{content.entity.source}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.discovered}}
+        <div>
+            <span class="p-key">Web Page Discovered: </span>
+            <span class="p-value">{{content.entity.discovered}}</span>
+        </div>
+      {{/if}}
+      {{! BLOG_POST output parsing}}
+      {{#if content.entity.uri}}
+        <div>
+            <span class="p-key">URI: </span>
+            <span class="p-value">{{content.entity.uri}}</span>
+        </div>
+      {{/if}}
+      {{#if (eq content.type "BLOG_POST")}}
+        {{#if content.entity.title}}
+          <div>
+              <span class="p-key">Title: </span>
+              <a href="https://portal-digitalshadows.com/search/blogpost/{{content.entity.id}}" class="p-link">{{content.entity.title}} {{fa-icon "external-link-square" class="external-link-icon"}}</a>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{#if content.entity.author}}
+        <div>
+            <span class="p-key">Author: </span>
+            <span class="p-value">{{content.entity.author}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.published}}
+        <div>
+            <span class="p-key">Published: </span>
+            <span class="p-value">{{content.entity.published}}</span>
+        </div>
+      {{/if}}
+      {{! VULNERABILITY output parsing}}
+      {{#if content.entity.cveIdentifier}}
+        <div>
+            <span class="p-key">CVE ID: </span>
+            <a href="https://portal-digitalshadows.com/search/vulnerability/{{content.entity.cveIdentifier}}" class="p-link">{{content.entity.cveIdentifier}} {{fa-icon "external-link-square" class="external-link-icon"}}</a>
+        </div>
+      {{/if}}
+      {{#if content.entity.created}}
+        <div>
+            <span class="p-key">Created: </span>
+            <span class="p-value">{{content.entity.created}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.updated}}
+        <div>
+            <span class="p-key">Last Updated: </span>
+            <span class="p-value">{{content.entity.updated}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.sourceUri}}
+        <div>
+            <span class="p-key">Source URI: </span>
+            <span class="p-value">{{content.entity.sourceUri}}</span>
+        </div>
+      {{/if}}
+      {{#if (eq content.type "VULNERABILITY")}}
+        {{#if content.entity.description}}
+          <div>
+              <span class="p-key">Description: </span>
+              <span class="p-value">{{content.entity.description}}</span>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{#if content.entity.relatedCPEs}}
+        <h1 class="p-title">{{fa-icon "bug" fixedWidth=true}}Related CPE's: </h1>
+        {{#each content.entity.relatedCPEs as |cpe|}}
+          <span class="section-tag">{{cpe}}</span>
+        {{/each}}
+      {{/if}}
+      {{#if content.entity.cvss2Score}}
+        <h1 class="p-title">{{fa-icon "star" fixedWidth=true}}CVSS v2 Detail: </h1>
+        <div>
+            <span class="p-key">Base Score: </span>
+            <span class="p-value">{{content.entity.cvss2Score.baseScore}}</span>
+        </div>
+        <div>
+            <span class="p-key">Authentication: </span>
+            <span class="p-value">{{content.entity.cvss2Score.authentication}}</span>
+        </div>
+        <div>
+            <span class="p-key">Access Vector: </span>
+            <span class="p-value">{{content.entity.cvss2Score.accessVector}}</span>
+        </div>
+        <div>
+            <span class="p-key">Access Complexity: </span>
+            <span class="p-value">{{content.entity.cvss2Score.accessComplexity}}</span>
+        </div>
+        <div>
+            <span class="p-key">Confidentiality Impact: </span>
+            <span class="p-value">{{content.entity.cvss2Score.confidentialityImpact}}</span>
+        </div>
+        <div>
+            <span class="p-key">Integrity Impact: </span>
+            <span class="p-value">{{content.entity.cvss2Score.integrityImpact}}</span>
+        </div>
+        <div>
+            <span class="p-key">Availability Impact: </span>
+            <span class="p-value">{{content.entity.cvss2Score.availabilityImpact}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.cvss3Score}}
+        <h1 class="p-title">{{fa-icon "stars" fixedWidth=true}}CVSS v3 Detail: </h1>
+        <div>
+            <span class="p-key">Vector String: </span>
+            <span class="p-value">{{content.entity.cvss3Score.vectorString}}</span>
+        </div>
+        <div>
+            <span class="p-key">Attack Vector: </span>
+            <span class="p-value">{{content.entity.cvss3Score.attackVector}}</span>
+        </div>
+        <div>
+            <span class="p-key">Attack Complexity: </span>
+            <span class="p-value">{{content.entity.cvss3Score.attackComplexity}}</span>
+        </div>
+        <div>
+            <span class="p-key">Privileges Required: </span>
+            <span class="p-value">{{content.entity.cvss3Score.privilegesRequired}}</span>
+        </div>
+        <div>
+            <span class="p-key">User Interaction Required: </span>
+            <span class="p-value">{{content.entity.cvss3Score.userInteraction}}</span>
+        </div>
+        <div>
+            <span class="p-key">Scope: </span>
+            <span class="p-value">{{content.entity.cvss3Score.scope}}</span>
+        </div>
+        <div>
+            <span class="p-key">Confidentiality Impact: </span>
+            <span class="p-value">{{content.entity.cvss3Score.confidentialityImpact}}</span>
+        </div>
+        <div>
+            <span class="p-key">Integrity Impact: </span>
+            <span class="p-value">{{content.entity.cvss3Score.integrityImpact}}</span>
+        </div>
+        <div>
+            <span class="p-key">Availability Impact: </span>
+            <span class="p-value">{{content.entity.cvss3Score.availabilityImpact}}</span>
+        </div>
+        <div>
+            <span class="p-key">Base Score: </span>
+            <span class="p-value">{{content.entity.cvss3Score.baseScore}}</span>
+        </div>
+        <div>
+            <span class="p-key">Base Severity: </span>
+            <span class="p-value">{{content.entity.cvss3Score.baseSeverity}}</span>
+        </div>
+      {{/if}}
+      {{! PASTE output parsing}}
+      {{#if (eq content.type "PASTE")}}
+        {{#if content.entity.title}}
+          <div>
+              <span class="p-key">Title: </span>
+              <a href="https://portal-digitalshadows.com/search/paste/{{content.entity.id}}" class="p-link">{{content.entity.title}} {{fa-icon "external-link-square" class="external-link-icon"}}</a>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{#if content.entity.pasted}}
+        <div>
+            <span class="p-key">Pasted: </span>
+            <span class="p-value">{{content.entity.pasted}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.username}}
+        <div>
+            <span class="p-key">Username: </span>
+            <span class="p-value">{{content.entity.username}}</span>
+        </div>
+      {{/if}}
+      {{! CONVERSATION_FRAGMENT output parsing}}
+      {{#if content.entity.server}}
+        <div>
+            <span class="p-key">Server: </span>
+            <span class="p-value">{{content.entity.server}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.channel}}
+        <div>
+            <span class="p-key">Channel: </span>
+            <span class="p-value">{{content.entity.channel}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.messages}}
+        <h1 class="p-title">{{fa-icon "comments" fixedWidth=true}}Message Detail: </h1>
+        {{#each content.entity.messages as |message index|}}
+          <h1 class="p-title">
+            Message #{{inc index}}
+          </h1>
+          {{#if message.sent}}
+            <div>
+                <span class="p-key">Sent: </span>
+                <span class="p-value">{{message.sent}}</span>
+            </div>
+          {{/if}}
+          {{#if message.username}}
+            <div>
+                <span class="p-key">Username: </span>
+                <span class="p-value">{{message.username}}</span>
+            </div>
+          {{/if}}
+          {{#if message.content}}
+            <h1 class="p-title">Message Content: </h1>
+            <div class="p-container">{{message.content}}</div>
+          {{/if}}
+        {{/each}}
+      {{/if}}
+      {{! WEBROOT_IP output parsing}}
+      {{#if content.entity.ipAddress}}
+        <div>
+            <span class="p-key">IP Address: </span>
+            <a href="https://portal-digitalshadows.com/search/webrootip/{{content.entity.ipAddress}}" class="p-link">{{content.entity.ipAddress}} {{fa-icon "external-link-square" class="external-link-icon"}}</a>
+        </div>
+        <div>
+            <span class="p-key">Currently Classified as a Threat? </span>
+            <span class="p-value"><b>{{content.entity.currentlyClassifiedAsThreat}}</b></span>
+        </div>
+      {{/if}}
+      {{#if content.entity.updatedDateTime}}
+        <div>
+            <span class="p-key">Last Updated: </span>
+            <span class="p-value">{{content.entity.updatedDateTime}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.reputationScore}}
+        <div>
+            <span class="p-key">Reputation Score: </span>
+            <span class="p-value">{{content.entity.reputationScore}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.asn}}
+        <div>
+            <span class="p-key">ASN: </span>
+            <span class="p-value">{{content.entity.asn}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.ipGeoInfo}}
+        <h1 class="p-title">{{fa-icon "globe" fixedWidth=true}}IP Geolocation Info: </h1>
+        <div>
+            <span class="p-key">Country: </span>
+            <span class="p-value">{{content.entity.ipGeoInfo.country}}</span>
+        </div>
+        <div>
+            <span class="p-key">City: </span>
+            <span class="p-value">{{content.entity.ipGeoInfo.city}}</span>
+        </div>
+        <div>
+            <span class="p-key">State: </span>
+            <span class="p-value">{{content.entity.ipGeoInfo.state}}</span>
+        </div>
+        <div>
+            <span class="p-key">Organization: </span>
+            <span class="p-value">{{content.entity.ipGeoInfo.organization}}</span>
+        </div>
+        <div>
+            <span class="p-key">ASN: </span>
+            <span class="p-value">{{content.entity.ipGeoInfo.asn}}</span>
+        </div>
+      {{/if}}
+      {{! ACTOR output parsing}}
+      {{#if (eq content.type "ACTOR")}}
+        {{#if content.entity.primaryTag.name}}
+          <div>
+              <span class="p-key">Actor: </span>
+              <a href="https://portal-digitalshadows.com/search/actor/{{content.entity.id}}" class="p-link">{{content.entity.primaryTag.name}} {{fa-icon "external-link-square" class="external-link-icon"}}</a>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{#if content.entity.threatLevel.type}}
+        <div>
+            <span class="p-key">Current Threat Level: </span>
+            <span class="p-value"><b>{{content.entity.threatLevel.type}}</b></span>
+        </div>
+      {{/if}}
+      {{#if content.entity.threatLevel.reason}}
+        <div>
+            <span class="p-key">Threat Level Reason: </span>
+            <span class="p-value">{{content.entity.threatLevel.reason}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.activityLevel}}
+        <div>
+            <span class="p-key">Currently How Active? </span>
+            <span class="p-value">{{content.entity.activityLevel}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.summary}}
+        <div>
+            <span class="p-key">Threat Summary: </span>
+            <span class="p-value">{{content.entity.summary}}</span>
+        </div>
+      {{/if}}
+      {{! SHARED_INCIDENT output parsing}}
+      {{#if content.entity.scope}}
+        <div>
+            <span class="p-key">Incident Scope: </span>
+            <span class="p-value">{{content.entity.scope}}</span>
+        </div>
+      {{/if}}
+      {{#if (eq content.type "SHARED_INCIDENT")}}
+        {{#if content.entity.type}}
+          <div>
+              <span class="p-key">Incident Type: </span>
+              <span class="p-value">{{content.entity.type}}</span>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{#if content.entity.severity}}
+        <div>
+            <span class="p-key">Incident Severity: </span>
+            <span class="p-value">{{content.entity.severity}}</span>
+        </div>
+      {{/if}}
+      {{#if (eq content.type "SHARED_INCIDENT")}}
+        {{#if content.entity.title}}
+          <div>
+              <span class="p-key">Title: </span>
+              <a href="https://portal-digitalshadows.com/search/intelligenceincident/{{content.entity.id}}" class="p-link">{{content.entity.title}} {{fa-icon "external-link-square" class="external-link-icon"}}</a>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{#if (eq content.type "SHARED_INCIDENT")}}
+        {{#if content.entity.summary}}
+          <div>
+              <span class="p-key">Incident Summary: </span>
+              <span class="p-value">{{content.entity.summary}}</span>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{! IP_WHOIS output parsing}}
+      {{#if (eq content.type "IP_WHOIS")}}
+        {{#if content.entity.netName}}
+          <div>
+              <span class="p-key">Network Name: </span>
+              <a href="https://portal-digitalshadows.com/search/ipwhois/{{content.entity.id}}" class="p-link">{{content.entity.netName}} {{fa-icon "external-link-square" class="external-link-icon"}}</a>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{#if content.entity.countryName}}
+        <div>
+            <span class="p-key">Country: </span>
+            <span class="p-value">{{content.entity.countryName}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.city}}
+        <div>
+            <span class="p-key">City: </span>
+            <span class="p-value">{{content.entity.city}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.organisation.name}}
+        <div>
+            <span class="p-key">Organization Name: </span>
+            <span class="p-value">{{content.entity.organisation.name}}</span>
+        </div>
+      {{/if}}
+      {{! STIX_PACKAGE output parsing}}
+      {{#if (eq content.type "STIX_PACKAGE")}}
+        {{#if content.entity.title}}
+          <div>
+              <span class="p-key">Package Title: </span>
+              <a href="https://portal-digitalshadows.com/search/stixpackage/{{content.entity.id}}" class="p-link">{{content.entity.title}} {{fa-icon "external-link-square" class="external-link-icon"}}</a>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{#if content.entity.sourceName}}
+        <div>
+            <span class="p-key">Source: </span>
+            <span class="p-value">{{content.entity.sourceName}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.producedTime}}
+        <div>
+            <span class="p-key">Produced: </span>
+            <span class="p-value">{{content.entity.producedTime}}</span>
+        </div>
+      {{/if}}
+      {{#if (eq content.type "STIX_PACKAGE")}}
+        {{#if content.entity.description}}
+          <div>
+              <span class="p-key">Package Description: </span>
+              <span class="p-value">{{content.description}}</span>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{! FORUM_POST output parsing}}
+      {{#if (eq content.type "FORUM_POST")}}
+        {{#if content.entity.thread.title}}
+          <div>
+              <span class="p-key">Forum Thread Title: </span>
+              <a href="https://portal-digitalshadows.com/search/forumpost/{{content.entity.post.id}}" class="p-link">{{content.entity.thread.title}} {{fa-icon "external-link-square" class="external-link-icon"}}</a>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{#if content.entity.forum.name}}
+        <div>
+            <span class="p-key">Forum Name: </span>
+            <span class="p-value">{{content.entity.forum.name}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.forum.parentForum.name}}
+        <div>
+            <span class="p-key">Parent Forum Name: </span>
+            <span class="p-value">{{content.entity.forum.parentForum.name}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.post.posted}}
+        <div>
+            <span class="p-key">Posted: </span>
+            <span class="p-value">{{content.entity.post.posted}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.postAuthor.username}}
+        <div>
+            <span class="p-key">Username: </span>
+            <span class="p-value">{{content.entity.postAuthor.username}}</span>
+        </div>
+      {{/if}}
+      {{! DNS_LOOKUP output parsing}}
+      {{#if (eq content.type "DNS_LOOKUP")}}
+        {{#if content.entity.dnsZone.name}}
+          <div>
+              <span class="p-key">DNS Name: </span>
+              <a href="https://portal-digitalshadows.com/search/dns/{{content.entity.dnsZone.name}}" class="p-link">{{content.entity.dnsZone.name}} {{fa-icon "external-link-square" class="external-link-icon"}}</a>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{#if content.entity.dnsZone.captured}}
+        <div>
+            <span class="p-key">Captured: </span>
+            <span class="p-value">{{content.entity.dnsZone.captured}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.dnsZone.records}}
+        <h1 class="p-title">{{fa-icon "font" fixedWidth=true}}DNS Records </h1>
+        {{#each content.entity.dnsZone.records as |record index|}}
+          <h1 class="p-title">
+            DNS Record #{{inc index}}
+          </h1>
+          {{#if record.ttl}}
+            <div>
+                <span class="p-key">Record TTL: </span>
+                <span class="p-value">{{record.ttl}}</span>
+            </div>
+          {{/if}}
+          {{#if record.type}}
+            <div>
+                <span class="p-key">Record Type: </span>
+                <span class="p-value">{{record.type}}</span>
+            </div>
+          {{/if}}
+          {{#if record.data}}
+            <div>
+                <span class="p-key">Data: </span>
+                <span class="p-value">{{record.data}}</span>
+            </div>
+          {{/if}}
+        {{/each}}
+      {{/if}}
+      {{! LOCATION output parsing}}
+      {{#if (eq content.type "LOCATION")}}
+        {{#if content.entity.id}}
+          <div>
+              <span class="p-key">Location Name: </span>
+              <a href="https://portal-digitalshadows.com/search/location/{{content.entity.id}}" class="p-link">{{content.entity.primaryTag.name}} {{fa-icon "external-link-square" class="external-link-icon"}}</a>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{#if content.entity.primaryTag.type}}
+        <div>
+            <span class="p-key">Location Type: </span>
+            <span class="p-value">{{content.entity.primaryTag.type}}</span>
+        </div>
+      {{/if}}
+      {{! WEBROOT_DOMAIN output parsing}}
+      {{#if (eq content.type "WEBROOT_DOMAIN")}}
+        {{#if content.entity.domainOrUrl}}
+          <div>
+              <span class="p-key">Domain or URL: </span>
+              <a href="https://portal-digitalshadows.com/search/webrootdomain?url={{content.entity.domainOrUrl}}" class="p-link">{{content.entity.domainOrUrl}} {{fa-icon "external-link-square" class="external-link-icon"}}</a>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{#if content.entity.lastUpdated}}
+        <div>
+            <span class="p-key">Last Updated: </span>
+            <span class="p-value">{{content.entity.lastUpdated}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.reputation}}
+        <div>
+            <span class="p-key">Reputation: </span>
+            <span class="p-value">{{content.entity.reputation}}</span>
+        </div>
+      {{/if}}
+      {{! WEBROOT_FILE_HASH output parsing}}
+      {{#if (eq content.type "WEBROOT_FILE_HASH")}}
+        {{#if content.entity.hash}}
+          <div>
+              <span class="p-key">Hash: </span>
+              <a href="https://portal-digitalshadows.com/search/webrootfilehash/{{content.entity.hash}}" class="p-link">{{content.entity.hash}} {{fa-icon "external-link-square" class="external-link-icon"}}</a>
+          </div>
+        {{/if}}
+      {{/if}}
+      {{#if content.entity.timestamp}}
+        <div>
+            <span class="p-key">Timestamp: </span>
+            <span class="p-value">{{content.entity.timestamp}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.category}}
+        <div>
+            <span class="p-key">Category: </span>
+            <span class="p-value">{{content.entity.category}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.malwareCategory}}
+        <div>
+            <span class="p-key">Malware Category: </span>
+            <span class="p-value">{{content.entity.malwareCategory}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.fileSizeBytes}}
+        <div>
+            <span class="p-key">File Size (bytes): </span>
+            <span class="p-value">{{content.entity.fileSizeBytes}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.fileLastSeen}}
+        <div>
+            <span class="p-key">Last Seen: </span>
+            <span class="p-value">{{content.entity.fileLastSeen}}</span>
+        </div>
+      {{/if}}
+      {{! CYLANCE_FILE_HASH output parsing}}
+      {{#if content.entity.requestedHash}}
+        <div>
+            <span class="p-key">Requested Hash: </span>
+            <span class="p-value">{{content.entity.requestedHash}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.fileHashInfo.status}}
+        <div>
+            <span class="p-key">Status: </span>
+            <span class="p-value">{{content.entity.fileHashInfo.status}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.fileHashInfo.generalScore}}
+        <div>
+            <span class="p-key">Score: </span>
+            <span class="p-value">{{content.entity.fileHashInfo.generalScore}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.fileHashInfo.hashes.sha256}}
+        <div>
+            <span class="p-key">SHA-256: </span>
+            <span class="p-value">{{content.entity.fileHashInfo.hashes.sha256}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.fileHashInfo.hashes.sha1}}
+        <div>
+            <span class="p-key">SHA-1: </span>
+            <span class="p-value">{{content.entity.fileHashInfo.hashes.sha1}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.fileHashInfo.hashes.md5}}
+        <div>
+            <span class="p-key">MD5Sum: </span>
+            <span class="p-value">{{content.entity.fileHashInfo.hashes.md5}}</span>
+        </div>
+      {{/if}}
+      {{#if content.entity.siteCategories}}
+        <h1 class="p-title">{{fa-icon "browser" fixedWidth=true}}Content Categories: </h1>
+        {{#each content.entity.siteCategories as |category|}}
+          <span class="section-tag">{{category}}</span>
+        {{/each}}
+      {{/if}}
+      {{#if content.snippet}}
+        <h1 class="p-title">{{fa-icon "align-justify" fixedWidth=true}}Content Snippet: </h1>
+        <div class="p-container">{{content.snippet}}</div>
+      {{/if}}
+      <hr>
+  {{/each}}
+
+{{/if}}
