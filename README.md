@@ -3,6 +3,7 @@
 Digital Risk Protection Software is designed to protect you from external threats, continually identifying where your assets are exposed, providing sufficient context to understand the risk, and options for remediation.
 The Polarity Digital Shadows integration allows the Polarity user to quickly perform research against the Digital Shadow's search features.
 
+> ***Note***: In order to look up threat actors in Digitial Shadows, download the ds_actors CSV found here and add it as a whitelisted channel in Digital Shadows for the integration function correctly.
 
 ## Digital Shadows Integration Options 
 
