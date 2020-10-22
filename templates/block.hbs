@@ -36,7 +36,7 @@
       {{#if content.entity.discovered}}
         <div>
             <span class="p-key">Web Page Discovered: </span>
-            <span class="p-value">{{content.entity.discovered}}</span>
+            <span class="p-value"> {{moment-format content.entity.discovered}}</span>
         </div>
       {{/if}}
       {{! BLOG_POST output parsing}}
@@ -82,7 +82,7 @@
       {{#if content.entity.updated}}
         <div>
             <span class="p-key">Last Updated: </span>
-            <span class="p-value">{{content.entity.updated}}</span>
+            <span class="p-value">{{moment-format content.entity.updated}}</span>
         </div>
       {{/if}}
       {{#if content.entity.sourceUri}}
@@ -195,7 +195,7 @@
       {{#if content.entity.pasted}}
         <div>
             <span class="p-key">Pasted: </span>
-            <span class="p-value">{{content.entity.pasted}}</span>
+            <span class="p-value">{{moment-format content.entity.pasted}}</span>
         </div>
       {{/if}}
       {{#if content.entity.username}}
@@ -255,7 +255,7 @@
       {{#if content.entity.updatedDateTime}}
         <div>
             <span class="p-key">Last Updated: </span>
-            <span class="p-value">{{content.entity.updatedDateTime}}</span>
+            <span class="p-value">{{moment-format content.entity.updatedDateTime}}</span>
         </div>
       {{/if}}
       {{#if content.entity.reputationScore}}
@@ -274,7 +274,7 @@
         <h1 class="p-title">{{fa-icon "globe" fixedWidth=true}}IP Geolocation Info: </h1>
         <div>
             <span class="p-key">Country: </span>
-            <span class="p-value">{{content.entity.ipGeoInfo.country}}</span>
+            <span class="p-value">{{trim content.entity.ipGeoInfo.country}}</span>
         </div>
         <div>
             <span class="p-key">City: </span>
@@ -464,7 +464,7 @@
       {{#if content.entity.dnsZone.captured}}
         <div>
             <span class="p-key">Captured: </span>
-            <span class="p-value">{{content.entity.dnsZone.captured}}</span>
+            <span class="p-value">{{moment-format content.entity.dnsZone.captured}}</span>
         </div>
       {{/if}}
       {{#if content.entity.dnsZone.records}}
@@ -612,8 +612,26 @@
         {{/each}}
       {{/if}}
       {{#if content.snippet}}
-        <h1 class="p-title">{{fa-icon "align-justify" fixedWidth=true}}Content Snippet: </h1>
-        <div class="p-container">{{content.snippet}}</div>
+        <h1 class="p-title">
+          <a
+            href="#"
+            class="dropdown"
+            {{on "click" (action "toggleContentSnippet" index)}}
+          >
+            <span class="text">
+              {{fa-icon "align-justify" fixedWidth=true}}
+              Content Snippet 
+              {{#if content.showContentSnippet}}
+                {{fa-icon "angle-up"}}
+              {{else}}
+                {{fa-icon "angle-down"}} 
+              {{/if}}
+            </span>
+          </a>
+        </h1>
+        {{#if content.showContentSnippet}}
+          <div class="p-container">{{content.snippet}}</div>
+        {{/if}}
       {{/if}}
       <hr>
   {{/each}}

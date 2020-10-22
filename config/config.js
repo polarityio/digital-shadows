@@ -67,19 +67,18 @@ module.exports = {
   },
   options: [
     {
-      key: "url",
-      name: "Base URL for the Digital Shadows API",
-      description:
-        "The base URL for the Digital Shadows API including the schema (i.e., https://)",
-      type: "text",
-      default: "https://portal-digitalshadows.com/api",
+      key: 'url',
+      name: 'Base URL for the Digital Shadows API',
+      description: 'The base URL for the Digital Shadows API including the schema (i.e., https://)',
+      type: 'text',
+      default: 'https://portal-digitalshadows.com/api',
       userCanEdit: false,
       adminOnly: true
     },
     {
       key: 'apiKey',
       name: 'API Key',
-      description: 'Valid Digital Shadows API Key',
+      description: 'Valid Digital Shadows API Key. Can be found in your account settings. ',
       default: '',
       type: 'password',
       userCanEdit: true,
@@ -88,7 +87,7 @@ module.exports = {
     {
       key: 'apiSecret',
       name: 'API Secret',
-      description: 'Valid Digital Shadows API Secret corresponding to the provided key',
+      description: 'Valid Digital Shadows API Secret Key. The secret key can be found in association with the api key.',
       default: '',
       type: 'password',
       userCanEdit: true,
@@ -97,7 +96,8 @@ module.exports = {
     {
       key: 'resultCount',
       name: 'Maximum Number of Results',
-      description: 'The maximum number of API search results to return',
+      description:
+        'The maximum number of API search results that will be displayed in the Polarity Overlay window. (Default: 20)',
       default: 20,
       type: 'number',
       userCanEdit: true,
@@ -106,123 +106,126 @@ module.exports = {
     {
       key: 'types',
       name: 'Record Types',
-      description: 'Restrict the result types to only those selected. At least one value is required. CLOSED_SOURCES, INCIDENTS, INDICATOR_FEED, INTELLIGENCE, TECHNICAL_SOURCE, VULNERABILITY_EXPLOIT, WHOIS and WEB_SOURCE act as groupings of multiple types.',
-      default: [{
-        value: 'ACTORS',
-        display: 'ACTORS'
-      },
-      {
-        value: 'AGGREGATE_DATA_BREACH',
-        display: 'AGGREGATE_DATA_BREACH'
-      },
-      {
-        value: 'BLOG_POST',
-        display: 'BLOG_POST'
-      },
-      {
-        value: 'CAMPAIGNS',
-        display: 'CAMPAIGNS'
-      },
-      {
-        value: 'CHAT_MESSAGE',
-        display: 'CHAT_MESSAGE'
-      },
-      {
-        value: 'CLIENT_INCIDENT',
-        display: 'CLIENT_INCIDENT'
-      },
-      {
-        value: 'CLOSED_SOURCES',
-        display: 'CLOSED_SOURCES'
-      },
-      {
-        value: 'DATA_BREACH',
-        display: 'DATA_BREACH'
-      },
-      {
-        value: 'DOMAIN_WHOIS',
-        display: 'DOMAIN_WHOIS'
-      },
-      {
-        value: 'DNS_LOOKUP',
-        display: 'DNS_LOOKUP'
-      },
-      {
-        value: 'EVENT',
-        display: 'EVENT'
-      },
-      {
-        value: 'FORUM_POST',
-        display: 'FORUM_POST'
-      },
-      {
-        value: 'INCIDENTS',
-        display: 'INCIDENTS'
-      },
-      {
-        value: 'INTEL_INCIDENT',
-        display: 'INTEL_INCIDENT'
-      },
-      {
-        value: 'INTELLIGENCE',
-        display: 'INTELLIGENCE'
-      },
-      {
-        value: 'LOCATION',
-        display: 'LOCATION'
-      },
-      {
-        value: 'MARKETPLACE_LISTING',
-        display: 'MARKETPLACE_LISTING'
-      },
-      {
-        value: 'PASTE',
-        display: 'PASTE'
-      },
-      {
-        value: 'SPECIFIC_TTP',
-        display: 'SPECIFIC_TTP'
-      },
-      {
-        value: 'TECHNICAL_SOURCE',
-        display: 'TECHNICAL_SOURCE'
-      },
-      {
-        value: 'STIX_PACKAGE',
-        display: 'STIX_PACKAGE'
-      },
-      {
-        value: 'WEB_PAGE',
-        display: 'WEB_PAGE'
-      },
-      {
-        value: 'WEB_SOURCE',
-        display: 'WEB_SOURCE'
-      },
-      {
-        value: 'WHOIS',
-        display: 'WHOIS'
-      },
-      {
-        value: 'IP_WHOIS',
-        display: 'IP_WHOIS'
-      },
-      {
-        value: 'VULNERABILITY',
-        display: 'VULNERABILITY'
-      },
-      {
-        value: 'EXPLOIT',
-        display: 'EXPLOIT'
-      },
-      {
-        value: 'VULNERABILITY_EXPLOIT',
-        display: 'VULNERABILITY_EXPLOIT'
-      },
-      {
-        value: 'INDICATOR_FEED',
-        display: 'INDICATOR_FEED'
-      }],
+      description:
+        'Restrict the result types to only those selected. At least one value is required. CLOSED_SOURCES, INCIDENTS, INDICATOR_FEED, INTELLIGENCE, TECHNICAL_SOURCE, VULNERABILITY_EXPLOIT, WHOIS and WEB_SOURCE act as groupings of multiple types.',
+      default: [
+        {
+          value: 'ACTORS',
+          display: 'ACTORS'
+        },
+        {
+          value: 'AGGREGATE_DATA_BREACH',
+          display: 'AGGREGATE_DATA_BREACH'
+        },
+        {
+          value: 'BLOG_POST',
+          display: 'BLOG_POST'
+        },
+        {
+          value: 'CAMPAIGNS',
+          display: 'CAMPAIGNS'
+        },
+        {
+          value: 'CHAT_MESSAGE',
+          display: 'CHAT_MESSAGE'
+        },
+        {
+          value: 'CLIENT_INCIDENT',
+          display: 'CLIENT_INCIDENT'
+        },
+        {
+          value: 'CLOSED_SOURCES',
+          display: 'CLOSED_SOURCES'
+        },
+        {
+          value: 'DATA_BREACH',
+          display: 'DATA_BREACH'
+        },
+        {
+          value: 'DOMAIN_WHOIS',
+          display: 'DOMAIN_WHOIS'
+        },
+        {
+          value: 'DNS_LOOKUP',
+          display: 'DNS_LOOKUP'
+        },
+        {
+          value: 'EVENT',
+          display: 'EVENT'
+        },
+        {
+          value: 'FORUM_POST',
+          display: 'FORUM_POST'
+        },
+        {
+          value: 'INCIDENTS',
+          display: 'INCIDENTS'
+        },
+        {
+          value: 'INTEL_INCIDENT',
+          display: 'INTEL_INCIDENT'
+        },
+        {
+          value: 'INTELLIGENCE',
+          display: 'INTELLIGENCE'
+        },
+        {
+          value: 'LOCATION',
+          display: 'LOCATION'
+        },
+        {
+          value: 'MARKETPLACE_LISTING',
+          display: 'MARKETPLACE_LISTING'
+        },
+        {
+          value: 'PASTE',
+          display: 'PASTE'
+        },
+        {
+          value: 'SPECIFIC_TTP',
+          display: 'SPECIFIC_TTP'
+        },
+        {
+          value: 'TECHNICAL_SOURCE',
+          display: 'TECHNICAL_SOURCE'
+        },
+        {
+          value: 'STIX_PACKAGE',
+          display: 'STIX_PACKAGE'
+        },
+        {
+          value: 'WEB_PAGE',
+          display: 'WEB_PAGE'
+        },
+        {
+          value: 'WEB_SOURCE',
+          display: 'WEB_SOURCE'
+        },
+        {
+          value: 'WHOIS',
+          display: 'WHOIS'
+        },
+        {
+          value: 'IP_WHOIS',
+          display: 'IP_WHOIS'
+        },
+        {
+          value: 'VULNERABILITY',
+          display: 'VULNERABILITY'
+        },
+        {
+          value: 'EXPLOIT',
+          display: 'EXPLOIT'
+        },
+        {
+          value: 'VULNERABILITY_EXPLOIT',
+          display: 'VULNERABILITY_EXPLOIT'
+        },
+        {
+          value: 'INDICATOR_FEED',
+          display: 'INDICATOR_FEED'
+        }
+      ],
       type: 'select',
       options: [
         {
@@ -358,8 +361,7 @@ module.exports = {
     {
       key: 'domainBlocklistRegex',
       name: 'Ignore Domain Regex',
-      description:
-        'Domains that match the given regex will not be looked up.',
+      description: 'Domains that match the given regex will not be looked up.',
       default: '',
       type: 'text',
       userCanEdit: false,
