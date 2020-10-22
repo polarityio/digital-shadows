@@ -68,19 +68,19 @@ function doLookup(entities, options, cb) {
         json: true
       };
 
-    Logger.trace({ requestOptions }, 'Request Options');
+      Logger.trace({ requestOptions }, 'Request Options');
 
-    tasks.push(function(done) {
-      requestWithDefaults(requestOptions, function(error, res, body) {
-        Logger.trace({ body, status: res.statusCode });
-        let processedResult = handleRestError(error, entity, res, body);
+      tasks.push(function (done) {
+        requestWithDefaults(requestOptions, function (error, res, body) {
+          Logger.trace({ body, status: res.statusCode });
+          let processedResult = handleRestError(error, entity, res, body);
 
-        if (processedResult.error) {
-          done(processedResult);
-          return;
-        }
+          if (processedResult.error) {
+            done(processedResult);
+            return;
+          }
 
-        done(null, processedResult);
+          done(null, processedResult);
         });
       });
     }
@@ -96,7 +96,11 @@ function doLookup(entities, options, cb) {
     const dataResults = results.body || [];
 
     results.forEach((result) => {
-      if (result.body === null || result.body.total === 0 || (Array.isArray(result.body.content) && result.body.content.length === 0)) {
+      if (
+        result.body === null ||
+        result.body.total === 0 ||
+        (Array.isArray(result.body.content) && result.body.content.length === 0)
+      ) {
         lookupResults.push({
           entity: result.entity,
           data: null
@@ -165,7 +169,13 @@ function _createBody(entity, options) {
     return typeObj.value;
   });
 
-  return {facets: ['RESULTS_TYPE'], filter: {tags: [], types: types}, pagination: {offset:0, size: numResults}, query: entity.value, sort: {direction: 'DESCENDING', property: 'relevance'}};
+  return {
+    facets: ['RESULTS_TYPE'],
+    filter: { tags: [], types: types },
+    pagination: { offset: 0, size: numResults },
+    query: entity.value,
+    sort: { direction: 'DESCENDING', property: 'relevance' }
+  };
 }
 
 function _setupRegexBlocklists(options) {
@@ -194,11 +204,11 @@ function _setupRegexBlocklists(options) {
   }
 }
 
-function _getTags(dataResults){
-const tags = [];
-tags.push(`Returned Results: ${dataResults.total}`);
-dataResults.facets.typeCounts.forEach((item) => tags.push(`${item.key}: ${item.count}`));
-return tags;
+function _getTags(dataResults) {
+  const tags = [];
+  tags.push(`Returned Results: ${dataResults.total}`);
+  dataResults.facets.typeCounts.forEach((item) => tags.push(`${item.key}: ${item.count}`));
+  return tags;
 }
 
 function _isInvalidEntity(entity) {
@@ -250,8 +260,6 @@ function _isEntityBlocklisted(entity, options) {
 
   return false;
 }
-
-
 
 function validateOption(errors, options, optionName, errMessage) {
   if (
