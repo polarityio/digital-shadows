@@ -17,6 +17,7 @@ module.exports = {
    */
   acronym: 'DS',
   onDemandOnly: false,
+  defaultColor: 'light-pink',
   /**
    * Description for this integration which is displayed in the Polarity integrations user interface
    *
