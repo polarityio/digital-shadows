@@ -38,7 +38,7 @@
       {{#if content.entity.discovered}}
         <div>
             <span class="p-key">Web Page Discovered: </span>
-            <span class="p-value"> {{moment-format content.entity.discovered}}</span>
+            <span class="p-value"> {{moment-format content.entity.discovered timezone=timezone}}</span>
         </div>
       {{/if}}
       {{! BLOG_POST output parsing}}
@@ -84,7 +84,7 @@
       {{#if content.entity.updated}}
         <div>
             <span class="p-key">Last Updated: </span>
-            <span class="p-value">{{moment-format content.entity.updated}}</span>
+            <span class="p-value">{{moment-format content.entity.updated timeZone=timezone}}</span>
         </div>
       {{/if}}
       {{#if content.entity.sourceUri}}
@@ -197,7 +197,7 @@
       {{#if content.entity.pasted}}
         <div>
             <span class="p-key">Pasted: </span>
-            <span class="p-value">{{moment-format content.entity.pasted}}</span>
+            <span class="p-value">{{moment-format content.entity.pasted timeZone=timezone}}</span>
         </div>
       {{/if}}
       {{#if content.entity.username}}
@@ -257,7 +257,7 @@
       {{#if content.entity.updatedDateTime}}
         <div>
             <span class="p-key">Last Updated: </span>
-            <span class="p-value">{{moment-format content.entity.updatedDateTime}}</span>
+            <span class="p-value">{{moment-format content.entity.updatedDateTime timeZone=timezone}}</span>
         </div>
       {{/if}}
       {{#if content.entity.reputationScore}}
@@ -466,7 +466,7 @@
       {{#if content.entity.dnsZone.captured}}
         <div>
             <span class="p-key">Captured: </span>
-            <span class="p-value">{{moment-format content.entity.dnsZone.captured}}</span>
+            <span class="p-value">{{moment-format content.entity.dnsZone.captured timeZone=timezone}}</span>
         </div>
       {{/if}}
       {{#if content.entity.dnsZone.records}}
