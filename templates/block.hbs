@@ -6,7 +6,9 @@
   <span class="p-title">{{fa-icon "search" fixedWidth=true}}Search Result Detail</span>
 
   {{#each details.content as |content index|}}
-
+      {{#if (gt index 0)}}
+        <hr>
+      {{/if}}
       <h1 class="p-title">
         Search Result #{{inc index}}
       </h1>
@@ -274,7 +276,7 @@
         <h1 class="p-title">{{fa-icon "globe" fixedWidth=true}}IP Geolocation Info: </h1>
         <div>
             <span class="p-key">Country: </span>
-            <span class="p-value">{{trim content.entity.ipGeoInfo.country}}</span>
+            <span class="p-value">{{content.entity.ipGeoInfo.country}}</span>
         </div>
         <div>
             <span class="p-key">City: </span>
@@ -620,11 +622,11 @@
           >
             <span class="text">
               {{fa-icon "align-justify" fixedWidth=true}}
-              Content Snippet 
+              Content Snippet
               {{#if content.showContentSnippet}}
                 {{fa-icon "angle-up"}}
               {{else}}
-                {{fa-icon "angle-down"}} 
+                {{fa-icon "angle-down"}}
               {{/if}}
             </span>
           </a>
@@ -633,7 +635,5 @@
           <div class="p-container">{{content.snippet}}</div>
         {{/if}}
       {{/if}}
-      <hr>
   {{/each}}
-
 {{/if}}
