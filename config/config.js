@@ -26,7 +26,7 @@ module.exports = {
    */
   description:
     'Digital Shadows minimizes digital risk by identifying unwanted exposure and protecting against external threats.',
-  entityTypes: ['domain', 'ipv4', 'cve', 'hash', 'email'],
+  entityTypes: ['domain', 'IPv4', 'cve', 'MD5', 'SHA1', 'SHA256', 'email'],
   /**
    * Provide custom component logic and template for rendering the integration details block.  If you do not
    * provide a custom template and/or component then the integration will display data as a table of key value
@@ -59,7 +59,7 @@ module.exports = {
     ca: '',
     // An HTTP proxy to be used. Supports proxy Auth with Basic Auth, identical to support for
     // the url parameter (by embedding the auth info in the uri)
-    proxy: ""
+    proxy: ''
   },
   logging: {
     level: 'info' //trace, debug, info, warn, error, fatal
